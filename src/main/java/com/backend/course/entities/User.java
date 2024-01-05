@@ -3,10 +3,19 @@ package com.backend.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity; // Fazer a classe depender da especificação e não da implementação
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_user") // Em vez de criar a tabela com o nome USER devido USER ser uma palavra reservado do H2. Iremos renomear para TB_USER, por isso temos essa annotation.
 public class User implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incremento do id dos registros
 	private Long id;
 	private String name;
 	private String email;
