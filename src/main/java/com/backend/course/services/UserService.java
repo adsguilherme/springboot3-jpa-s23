@@ -18,8 +18,8 @@ public class UserService {
 	public List<User> findAll() {
 		return repository.findAll();
 	}
-	
-	public User findByid(Long id) {
+
+	public User findById(Long id) {
 		Optional<User> obj =  repository.findById(id);
 		return obj.get();
 	}
