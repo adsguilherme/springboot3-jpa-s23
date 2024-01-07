@@ -1,13 +1,11 @@
 package com.backend.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Entity; // Fazer a classe depender da especificação e não da implementação
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_user") // Em vez de criar a tabela com o nome USER devido USER ser uma palavra reservado do H2. Iremos renomear para TB_USER, por isso temos essa annotation.
@@ -21,7 +19,14 @@ public class User implements Serializable {
 	private String email;
 	private String phone;
 	private String password;
-	
+
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
 	public User() {
 	}
 
